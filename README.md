@@ -1,4 +1,4 @@
-## User Management Springboot Application
+## User Management - Springboot Application
 
 - ### Create Database zinterview in MySQL
 - ### In Application.properties file do this changes:
