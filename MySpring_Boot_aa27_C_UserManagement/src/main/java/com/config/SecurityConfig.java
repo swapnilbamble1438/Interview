@@ -3,6 +3,7 @@ package com.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,8 +18,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	
+	
+	@Bean
+	public PasswordEncoder passwordEncoder()
+	{
+		return new BCryptPasswordEncoder();
+	}
+	
+	
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
+	
+
+	@Bean
+	@Override
+	protected AuthenticationManager authenticationManager() throws Exception {
+		return super.authenticationManager();
+	}
+
+	
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+		auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+		
+	}
+
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -27,8 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			.csrf().disable()
 			.authorizeHttpRequests()
-			.antMatchers("/user/create","/forgotpassword").permitAll()
-			.antMatchers("/user/getall").hasRole("NORMAL")
+			.antMatchers("/**").permitAll()
+			.antMatchers("/user/checklogin").hasRole("NORMAL")
 			.anyRequest()
 			.authenticated()
 			.and()
@@ -37,36 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				
 
 	}
-
-
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider()
-	{
-		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-		daoAuthenticationProvider.setUserDetailsService(customUserDetailsService);
-		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-		
-		return daoAuthenticationProvider;
-		
-	}
-
-	
-	///configure method...
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.authenticationProvider(authenticationProvider());
-		
-		
-	}
-	
-	@Bean
-	public PasswordEncoder passwordEncoder()
-	{
-		return NoOpPasswordEncoder.getInstance();
-	}
-
 	
 	
 }

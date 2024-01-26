@@ -6,11 +6,14 @@ import org.springframework.data.repository.query.Param;
 
 import com.model.Users;
 
-public interface UserRepo extends JpaRepository<Users, Integer> {
+public interface UserRepo extends JpaRepository<Users, String> {
 
 
 	@Query("select v from Users v where v.username = :username")
-	public Users getUsersByUsername(@Param("username") String username);
+	public Users getUserByUsername(@Param("username") String username);
+	
+	@Query("select v from Users v where v.email = :email")
+	public Users getUsersByEmail(@Param("email") String email);
 	
 	
 	
