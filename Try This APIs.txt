@@ -1,0 +1,98 @@
+
+	
+//======== create User =======================================================================================================	
+	/*
+	 * select request type POST 
+	 * Type url  http://localhost:8080/user/create
+	 * select Body 
+	 * select raw and JSON and write below code
+		
+		{
+		    "username":"Your username",
+		    "password":"Your password",
+		    "email":"Your EmailId"
+		}
+		
+	 * And Click Send	
+	
+	*/
+
+//======= delete User by id/username ==================================================================================================
+	/*
+	 * select request type DELETE
+	 * Type url  http://localhost:8080/user/delete/Write your username here	
+	 * And Click Send
+	*/
+	
+//========== getall Users ====================================================================================================
+	/*
+	 * select request type GET
+	 * Type url  http://localhost:8080/user/getall
+	 * select Body
+	 * select form-data
+	 * In Key Column write "pageNo" and its Integer value in Value Column
+	 * Again In Key Column in below row(below pageNo) write "pageSize" and its Integer value in Value Column
+	 * And Click Send
+	
+	*/
+	
+//============ get User by id/username ================================================================================	
+	/*
+	 * select request type GET 
+	 * Type url  http://localhost:8080/user/Write your username here
+	 * And Click Send	
+	*/
+	
+//====== check login ====================================================================================================
+	/*
+	 This is restricted url which is only accessible after login.
+	 so you have to try to login and check if the url is accessible or not
+	 if not then credentials you entered are wrong.
+	
+	 * select request type GET 
+	 * Type url  http://localhost:8080/user/checklogin
+	 * select Authorization
+	 * In Type select Basic Auth
+	 * Type your Username and Password
+	 * And Click Send
+	
+	*/
+		
+//====== send otp by email / reset password ============================================================================================
+	/*
+	 * select request type POST 
+	 * Type url  http://localhost:8080/resetpassword
+	 * Select Body 
+	 * select raw and JSON and write below code
+			
+		{
+	    "email":"Your email id"
+		}
+	
+	* And Click Send	
+	
+	*/
+	
+//========== verify otp ===================================================================================================
+	/*
+	 * select request type POST 
+	 * Type url  http://localhost:8080/user/delete/Write otp here	
+	 * And Click Send
+	*/
+	
+
+	
+//=========== update Password =================================================================================================
+	/*
+	 * select request type PUT
+	 * Type url  http://localhost:8080/user/updatepassword
+	 * select Body
+	 * select form-data
+	 * In Key Column write "newPassword" and its String value in Value Column
+	 * And Click Send
+	
+	*/
+
+//=========================================================================================================================
+
+	
