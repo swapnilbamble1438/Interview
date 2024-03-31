@@ -76,7 +76,7 @@
 //========== verify otp ===================================================================================================
 	/*
 	 * select request type POST 
-	 * Type url  http://localhost:8080/user/verifyotp/{otp}
+	 * Type url  http://localhost:8080/user/verifyotp/Write your OTP here
 	 * And Click Send
 	*/
 	
